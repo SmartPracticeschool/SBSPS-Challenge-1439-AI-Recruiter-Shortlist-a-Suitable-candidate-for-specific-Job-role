@@ -1,0 +1,2328 @@
+{
+  "intents": [
+    {
+      "intent": "Yes",
+      "examples": [
+        {
+          "text": "Yes"
+        }
+      ],
+      "description": "Start Interview"
+    },
+    {
+      "intent": "CollectMail",
+      "examples": [
+        {
+          "text": "varun@gmail.com"
+        },
+        {
+          "text": "john_smith12@gmail.com"
+        },
+        {
+          "text": "john@gmail.com"
+        },
+        {
+          "text": "my mail id is john12@gmail.com"
+        },
+        {
+          "text": "mail id john@gmail.com"
+        },
+        {
+          "text": "id john@yahoo.com"
+        },
+        {
+          "text": "raju@gmail.com"
+        },
+        {
+          "text": "varun@yahoo.com"
+        }
+      ],
+      "description": "Collects E-mail ID"
+    },
+    {
+      "intent": "Done",
+      "examples": [
+        {
+          "text": "done"
+        }
+      ],
+      "description": "Done entering programming languages"
+    },
+    {
+      "intent": "No",
+      "examples": [
+        {
+          "text": "Cannot take it now"
+        },
+        {
+          "text": "No"
+        },
+        {
+          "text": "Not now"
+        },
+        {
+          "text": "Not interested"
+        },
+        {
+          "text": "cant attend now"
+        },
+        {
+          "text": "no enough time"
+        },
+        {
+          "text": "little busy now"
+        }
+      ],
+      "description": "Not interested in Interview"
+    },
+    {
+      "intent": "name",
+      "examples": [
+        {
+          "text": "john is my name"
+        },
+        {
+          "text": "varun is name"
+        },
+        {
+          "text": "call me john"
+        },
+        {
+          "text": "call me rob wills"
+        },
+        {
+          "text": "I am Rama"
+        },
+        {
+          "text": "Sushanth Singh"
+        },
+        {
+          "text": "Amir Khan"
+        },
+        {
+          "text": "Krishna"
+        },
+        {
+          "text": "I am Amir Khan"
+        },
+        {
+          "text": "Vamsi"
+        },
+        {
+          "text": "Disha Patani"
+        },
+        {
+          "text": "Ghatamaneni Mahesh Krishna"
+        },
+        {
+          "text": "john smith my name"
+        },
+        {
+          "text": "john smith"
+        },
+        {
+          "text": "My name is Smith"
+        },
+        {
+          "text": "I am john smith"
+        },
+        {
+          "text": "john"
+        },
+        {
+          "text": "my name is john smith"
+        },
+        {
+          "text": "i am known as john"
+        },
+        {
+          "text": "people call me john"
+        },
+        {
+          "text": "people call me as john"
+        },
+        {
+          "text": "name is Smith"
+        }
+      ],
+      "description": "Collects name"
+    },
+    {
+      "intent": "Rating",
+      "examples": [
+        {
+          "text": "Intermediate"
+        },
+        {
+          "text": "Beginner"
+        },
+        {
+          "text": "Expert"
+        }
+      ],
+      "description": "Rating of Programming Language"
+    },
+    {
+      "intent": "ContactNumber",
+      "examples": [
+        {
+          "text": "99121345670"
+        },
+        {
+          "text": "+91 9912345670"
+        },
+        {
+          "text": "phone number is 9912345670"
+        },
+        {
+          "text": "My number is 9912345670"
+        },
+        {
+          "text": "I am available at 9912345670"
+        },
+        {
+          "text": "Ring me at 9912345670"
+        },
+        {
+          "text": "23059235993"
+        },
+        {
+          "text": "call me at 9912345670"
+        }
+      ],
+      "description": "Collects Contact Number"
+    }
+  ],
+  "entities": [
+    {
+      "entity": "text",
+      "values": [
+        {
+          "type": "patterns",
+          "value": "text",
+          "patterns": [
+            "([A-Za-z0-9 ./!$#%&()?<>-_,:;'\"]{1,})"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "name",
+      "values": [
+        {
+          "type": "patterns",
+          "value": "name",
+          "patterns": [
+            "([A-Za-z .]{1,})"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "MailId",
+      "values": [
+        {
+          "type": "patterns",
+          "value": "MailId",
+          "patterns": [
+            "\\b[A-Za-z0-9._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,}\\b"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "ContactNumber",
+      "values": [
+        {
+          "type": "patterns",
+          "value": "ContactNumber",
+          "patterns": [
+            "([0-9]{10})"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "Rating",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Rating",
+          "synonyms": [
+            "Beginner",
+            "Intermediate",
+            "Expert"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Congratulations $name!! Your score is $overallPercent% and you are SELECTED for the next round!!!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_8_1594299204762",
+      "conditions": "$overallScore>10 && $yesPython",
+      "dialog_node": "response_4_1594541873660",
+      "previous_sibling": "response_4_1594541570741"
+    },
+    {
+      "type": "slot",
+      "parent": "node_8_1594299204762",
+      "dialog_node": "slot_2_1594321449817",
+      "previous_sibling": "slot_8_1594306980192"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Sorry $name!! You have not met our eligibility criteria! Your score is $overallPercent%. Better luck next time!!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_8_1594299204762",
+      "conditions": "anything_else",
+      "dialog_node": "response_7_1594542072732",
+      "previous_sibling": "response_1_1594567203063"
+    },
+    {
+      "type": "slot",
+      "parent": "node_8_1594299204762",
+      "variable": "$Rating",
+      "dialog_node": "slot_8_1594306980192",
+      "previous_sibling": "response_7_1594542072732"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Congratulations $name!! Your score is $overallPercent% and you are SELECTED for the next round!!!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_8_1594299204762",
+      "conditions": "$overallScore>=8 && $noPython",
+      "dialog_node": "response_1_1594567203063",
+      "previous_sibling": "response_4_1594541873660"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Congratulations $name!! Your score is $overallPercent% and you are SELECTED for the next round!!!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_8_1594299204762",
+      "conditions": "$overallScore>=15",
+      "dialog_node": "response_4_1594541570741"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_1_1594297917067",
+      "event_name": "focus",
+      "dialog_node": "handler_3_1594297917122",
+      "previous_sibling": "handler_2_1594297917122"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_1_1594297917067",
+      "context": {
+        "yesJava": "#Yes"
+      },
+      "conditions": "#Yes",
+      "event_name": "input",
+      "dialog_node": "handler_2_1594297917122"
+    },
+    {
+      "type": "slot",
+      "parent": "node_1_1594296968675",
+      "variable": "$RatingPython",
+      "dialog_node": "slot_8_1594298642829"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_5_1594538492560",
+      "context": {
+        "ScoreC": 2
+      },
+      "conditions": "$RatingC:Intermediate",
+      "dialog_node": "response_10_1594538560036",
+      "previous_sibling": "response_2_1594538517440"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_5_1594538492560",
+      "context": {
+        "ScoreC": 3
+      },
+      "conditions": "$RatingC:Expert",
+      "dialog_node": "response_2_1594538657074",
+      "previous_sibling": "response_10_1594538560036"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_5_1594538492560",
+      "context": {
+        "ScoreC": 1
+      },
+      "conditions": "$RatingC:Beginner",
+      "dialog_node": "response_2_1594538517440",
+      "previous_sibling": "slot_3_1594538541728"
+    },
+    {
+      "type": "slot",
+      "parent": "node_5_1594538492560",
+      "dialog_node": "slot_3_1594538541728"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_2_1594321449817",
+      "event_name": "focus",
+      "dialog_node": "handler_4_1594321449863",
+      "previous_sibling": "handler_7_1594321449863"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_2_1594321449817",
+      "event_name": "input",
+      "dialog_node": "handler_7_1594321449863"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_7_1594566121149",
+      "event_name": "focus",
+      "dialog_node": "handler_8_1594566121192",
+      "previous_sibling": "handler_7_1594566121192"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_7_1594566121149",
+      "context": {
+        "weakness": "@text.literal"
+      },
+      "conditions": "@text.literal",
+      "event_name": "input",
+      "dialog_node": "handler_7_1594566121192"
+    },
+    {
+      "type": "slot",
+      "parent": "node_1_1593604082292",
+      "variable": "$ContactNumber",
+      "dialog_node": "slot_3_1593604127232",
+      "previous_sibling": "node_1_1594545963385"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "What is your E-mail ID $name?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1593604082292",
+      "conditions": "@ContactNumber",
+      "dialog_node": "response_7_1593604125825",
+      "previous_sibling": "slot_3_1593604127232"
+    },
+    {
+      "type": "frame",
+      "title": "End of Personal Info",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Okay $name! Your personal info has been recorded. "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "values": [
+              {
+                "text": "$name, tell me about yourself?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1593604082292",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_7_1594546457584"
+      },
+      "conditions": "#CollectMail || @MailId",
+      "dialog_node": "node_1_1594545963385"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_9_1594296098847",
+      "event_name": "focus",
+      "dialog_node": "handler_8_1594296098898",
+      "previous_sibling": "handler_9_1594296098898"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_9_1594296098847",
+      "context": {
+        "noC": "#No"
+      },
+      "conditions": "#No",
+      "event_name": "input",
+      "dialog_node": "handler_9_1594296098898"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_1_1594566041203",
+      "event_name": "focus",
+      "dialog_node": "handler_7_1594566041254",
+      "previous_sibling": "handler_4_1594566041254"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_1_1594566041203",
+      "context": {
+        "strength": "@text.literal"
+      },
+      "conditions": "@text.literal",
+      "event_name": "input",
+      "dialog_node": "handler_4_1594566041254"
+    },
+    {
+      "type": "slot",
+      "parent": "node_3_1594296689500",
+      "variable": "$RatingJava",
+      "dialog_node": "slot_2_1594298089287"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_6_1594298782602",
+      "event_name": "focus",
+      "dialog_node": "handler_8_1594298782664",
+      "previous_sibling": "handler_10_1594298782664"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_6_1594298782602",
+      "context": {
+        "noPython": "#No"
+      },
+      "conditions": "#No",
+      "event_name": "input",
+      "dialog_node": "handler_10_1594298782664"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "Your Id is $random"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_9_1594322755879",
+      "context": {
+        "random": "<?  (new java.util.Random().nextInt(1000)) ?>"
+      },
+      "conditions": "true",
+      "dialog_node": "response_4_1594323270392"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_8_1594295896112",
+      "event_name": "focus",
+      "dialog_node": "handler_5_1594295896152",
+      "previous_sibling": "handler_9_1594295896152"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_8_1594295896112",
+      "context": {
+        "yesC": "#Yes"
+      },
+      "conditions": "#Yes",
+      "event_name": "input",
+      "dialog_node": "handler_9_1594295896152"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_8_1593604253752",
+      "event_name": "focus",
+      "dialog_node": "handler_5_1593604253796",
+      "previous_sibling": "handler_6_1593604253796"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_8_1593604253752",
+      "context": {
+        "hire": "@text.literal"
+      },
+      "conditions": "@text.literal",
+      "event_name": "input",
+      "dialog_node": "handler_6_1593604253796"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Name please??"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_3_1593603995043",
+      "event_name": "focus",
+      "dialog_node": "handler_7_1593603995078",
+      "previous_sibling": "handler_6_1593603995078"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_3_1593603995043",
+      "context": {
+        "name": "@name.literal"
+      },
+      "conditions": "@name.literal",
+      "event_name": "input",
+      "dialog_node": "handler_6_1593603995078"
+    },
+    {
+      "type": "slot",
+      "parent": "node_6_1594565910802",
+      "variable": "$strength",
+      "dialog_node": "slot_1_1594566041203",
+      "previous_sibling": "node_8_1594566100571"
+    },
+    {
+      "type": "frame",
+      "title": "Weakness",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Okay!  Why should we hire you $name?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1594565910802",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_3_1593604201301"
+      },
+      "conditions": "true",
+      "dialog_node": "node_8_1594566100571"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_2_1594298089287",
+      "event_name": "focus",
+      "dialog_node": "handler_8_1594298089341",
+      "previous_sibling": "handler_10_1594298089341"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_2_1594298089287",
+      "context": {
+        "RatingJava": "@Rating.literal"
+      },
+      "conditions": "@Rating.literal",
+      "event_name": "input",
+      "dialog_node": "handler_10_1594298089341"
+    },
+    {
+      "type": "slot",
+      "parent": "node_8_1594566100571",
+      "variable": "$weakness",
+      "dialog_node": "slot_7_1594566121149",
+      "previous_sibling": "node_3_1593604201301"
+    },
+    {
+      "type": "frame",
+      "title": "C",
+      "output": {
+        "generic": [
+          {
+            "title": "Okay $name! Let us get technical now! Do you know C programming language?",
+            "options": [
+              {
+                "label": "Yes",
+                "value": {
+                  "input": {
+                    "text": "yes"
+                  }
+                }
+              },
+              {
+                "label": "No",
+                "value": {
+                  "input": {
+                    "text": "no"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_8_1594566100571",
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "true",
+      "dialog_node": "node_3_1593604201301"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_6_1594297235226",
+      "event_name": "focus",
+      "dialog_node": "handler_7_1594297235282",
+      "previous_sibling": "handler_5_1594297235282"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_6_1594297235226",
+      "context": {
+        "yesCpp": "#Yes"
+      },
+      "conditions": "#Yes",
+      "event_name": "input",
+      "dialog_node": "handler_5_1594297235282"
+    },
+    {
+      "type": "slot",
+      "parent": "node_3_1593604201301",
+      "variable": "$hire",
+      "dialog_node": "slot_8_1593604253752",
+      "previous_sibling": "response_10_1594106824991"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1593604201301",
+      "disabled": true,
+      "dialog_node": "response_10_1594106824991",
+      "previous_sibling": "node_9_1594296073082"
+    },
+    {
+      "type": "frame",
+      "title": "C++",
+      "parent": "node_3_1593604201301",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#No || $RatingC",
+      "dialog_node": "node_9_1594296073082",
+      "previous_sibling": "node_2_1594295708099"
+    },
+    {
+      "type": "frame",
+      "title": "Yes C",
+      "parent": "node_3_1593604201301",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#Yes",
+      "dialog_node": "node_2_1594295708099"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_2_1594540749413",
+      "event_name": "focus",
+      "dialog_node": "handler_4_1594540749413",
+      "previous_sibling": "handler_3_1594540749413"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_2_1594540749413",
+      "event_name": "input",
+      "dialog_node": "handler_3_1594540749413"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "title": "Okay $name (Java Rating Recorded)! Do you know Python?",
+            "options": [
+              {
+                "label": "Yes",
+                "value": {
+                  "input": {
+                    "text": "yes"
+                  }
+                }
+              },
+              {
+                "label": "No",
+                "value": {
+                  "input": {
+                    "text": "no"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_2_1594296773167",
+      "conditions": "$RatingJava",
+      "dialog_node": "response_3_1594298284993",
+      "previous_sibling": "response_10_1594298249361"
+    },
+    {
+      "type": "frame",
+      "title": "Interview Done",
+      "parent": "node_2_1594296773167",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_5_1594538492560"
+      },
+      "conditions": "#No || $RatingPython",
+      "dialog_node": "node_9_1594296985171",
+      "previous_sibling": "node_9_1594296876297"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "title": "Okay $name! Do you know Python?",
+            "options": [
+              {
+                "label": "Yes",
+                "value": {
+                  "input": {
+                    "text": "yes"
+                  }
+                }
+              },
+              {
+                "label": "No",
+                "value": {
+                  "input": {
+                    "text": "no"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_2_1594296773167",
+      "conditions": "$noJava",
+      "dialog_node": "response_10_1594298249361",
+      "previous_sibling": "slot_5_1594298250287"
+    },
+    {
+      "type": "frame",
+      "title": "Yes Python",
+      "parent": "node_2_1594296773167",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#Yes",
+      "dialog_node": "node_9_1594296876297",
+      "previous_sibling": "response_3_1594298284993"
+    },
+    {
+      "type": "slot",
+      "parent": "node_2_1594296773167",
+      "variable": "$noJava",
+      "dialog_node": "slot_5_1594298250287"
+    },
+    {
+      "type": "slot",
+      "parent": "node_1_1594545963385",
+      "variable": "$MailId",
+      "dialog_node": "slot_7_1594546072315",
+      "previous_sibling": "node_7_1594546457584"
+    },
+    {
+      "type": "frame",
+      "title": "Info",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Okay $name! What are your strengths?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1594545963385",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_6_1594565910802"
+      },
+      "conditions": "true",
+      "dialog_node": "node_7_1594546457584"
+    },
+    {
+      "type": "standard",
+      "title": "Name",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "What is your full name?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "Welcome",
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "#Yes",
+      "dialog_node": "node_8_1593333849754"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_1_1594540573441",
+      "context": {
+        "ScoreCpp": 2
+      },
+      "conditions": "$RatingCpp:Intermediate",
+      "dialog_node": "response_6_1594540573477",
+      "previous_sibling": "response_5_1594540573477"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_1_1594540573441",
+      "context": {
+        "ScoreCpp": 3
+      },
+      "conditions": "$RatingCpp:Expert",
+      "dialog_node": "response_7_1594540573477",
+      "previous_sibling": "response_6_1594540573477"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_1_1594540573441",
+      "context": {
+        "ScoreCpp": 1
+      },
+      "conditions": "$RatingCpp:Beginner",
+      "dialog_node": "response_5_1594540573477",
+      "previous_sibling": "slot_2_1594540573477"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_1_1594540573441",
+      "dialog_node": "slot_2_1594540573477"
+    },
+    {
+      "type": "frame",
+      "title": "Rating C++",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Amazing! $name, you are $RatingCpp in C++!!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1594296540853",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_4_1594296641050"
+      },
+      "conditions": "@Rating",
+      "dialog_node": "node_10_1594296555249",
+      "previous_sibling": "response_8_1594297234226"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "title": "$name, how do you rate yourself in C++?",
+            "options": [
+              {
+                "label": "Beginner",
+                "value": {
+                  "input": {
+                    "text": "Beginner"
+                  }
+                }
+              },
+              {
+                "label": "Intermediate",
+                "value": {
+                  "input": {
+                    "text": "Intermediate"
+                  }
+                }
+              },
+              {
+                "label": "Expert",
+                "value": {
+                  "input": {
+                    "text": "Expert"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_1_1594296540853",
+      "conditions": "$yesCpp",
+      "dialog_node": "response_8_1594297234226",
+      "previous_sibling": "slot_6_1594297235226"
+    },
+    {
+      "type": "slot",
+      "parent": "node_1_1594296540853",
+      "variable": "$yesCpp",
+      "dialog_node": "slot_6_1594297235226"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_8_1594306980192",
+      "event_name": "focus",
+      "dialog_node": "handler_8_1594306980245",
+      "previous_sibling": "handler_5_1594306980245"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_8_1594306980192",
+      "context": {
+        "Rating": ""
+      },
+      "conditions": "",
+      "event_name": "input",
+      "dialog_node": "handler_5_1594306980245"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "title": "$name, how do you rate yourself in Java?",
+            "options": [
+              {
+                "label": "Beginner",
+                "value": {
+                  "input": {
+                    "text": "Beginner"
+                  }
+                }
+              },
+              {
+                "label": "Intermediate",
+                "value": {
+                  "input": {
+                    "text": "Intermediate"
+                  }
+                }
+              },
+              {
+                "label": "Expert",
+                "value": {
+                  "input": {
+                    "text": "Expert"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_10_1594296662321",
+      "conditions": "$yesJava",
+      "dialog_node": "response_7_1594297915967",
+      "previous_sibling": "slot_1_1594297917067"
+    },
+    {
+      "type": "frame",
+      "title": "Rating Java",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Wow! $name, you are $RatingJava in Java!!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_10_1594296662321",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_2_1594296773167"
+      },
+      "conditions": "@Rating",
+      "dialog_node": "node_3_1594296689500",
+      "previous_sibling": "response_7_1594297915967"
+    },
+    {
+      "type": "slot",
+      "parent": "node_10_1594296662321",
+      "variable": "$yesJava",
+      "dialog_node": "slot_1_1594297917067"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_2_1594297515917",
+      "event_name": "focus",
+      "dialog_node": "handler_8_1594297515973",
+      "previous_sibling": "handler_10_1594297515973"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_2_1594297515917",
+      "context": {
+        "noCpp": "#No"
+      },
+      "conditions": "#No",
+      "event_name": "input",
+      "dialog_node": "handler_10_1594297515973"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_5_1594298487691",
+      "event_name": "focus",
+      "dialog_node": "handler_3_1594298487742",
+      "previous_sibling": "handler_7_1594298487742"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_5_1594298487691",
+      "context": {
+        "yesPython": "#Yes"
+      },
+      "conditions": "#Yes",
+      "event_name": "input",
+      "dialog_node": "handler_7_1594298487742"
+    },
+    {
+      "type": "slot",
+      "parent": "node_10_1594296555249",
+      "variable": "$RatingCpp",
+      "dialog_node": "slot_10_1594297407831"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_8_1594540755399",
+      "context": {
+        "ScorePython": 2
+      },
+      "conditions": "$RatingPython:Intermediate",
+      "dialog_node": "response_13_1594540755439",
+      "previous_sibling": "response_12_1594540755439"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_8_1594540755399",
+      "context": {
+        "ScorePython": 1
+      },
+      "conditions": "$RatingPython:Beginner",
+      "dialog_node": "response_12_1594540755439",
+      "previous_sibling": "slot_9_1594540755439"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_8_1594540755399",
+      "context": {
+        "ScorePython": 3
+      },
+      "conditions": "$RatingPython:Expert",
+      "dialog_node": "response_14_1594540755439",
+      "previous_sibling": "response_13_1594540755439"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_8_1594540755399",
+      "dialog_node": "slot_9_1594540755439"
+    },
+    {
+      "type": "slot",
+      "parent": "node_10_1593603935660",
+      "variable": "$name",
+      "dialog_node": "slot_3_1593603995043",
+      "previous_sibling": "node_1_1593604082292"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "What is your contact number $name? (Enter 10 digit phone number)"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_10_1593603935660",
+      "conditions": "@name",
+      "dialog_node": "response_10_1593603993971",
+      "previous_sibling": "slot_3_1593603995043"
+    },
+    {
+      "type": "frame",
+      "title": "Mail",
+      "parent": "node_10_1593603935660",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#ContactNumber || @ContactNumber",
+      "dialog_node": "node_1_1593604082292"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "title": "Okay $name (C Rating Recorded)! Do you know C++?",
+            "options": [
+              {
+                "label": "Yes",
+                "value": {
+                  "input": {
+                    "text": "yes"
+                  }
+                }
+              },
+              {
+                "label": "No",
+                "value": {
+                  "input": {
+                    "text": "no"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_9_1594296073082",
+      "conditions": "$RatingC",
+      "dialog_node": "response_8_1594296281574",
+      "previous_sibling": "response_5_1594296097806"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "title": "Okay $name! Do you know C++?",
+            "options": [
+              {
+                "label": "Yes",
+                "value": {
+                  "input": {
+                    "text": "yes"
+                  }
+                }
+              },
+              {
+                "label": "No",
+                "value": {
+                  "input": {
+                    "text": "no"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_9_1594296073082",
+      "conditions": "$noC",
+      "dialog_node": "response_5_1594296097806",
+      "previous_sibling": "slot_9_1594296098847"
+    },
+    {
+      "type": "frame",
+      "title": "Java",
+      "parent": "node_9_1594296073082",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#No || $RatingCpp",
+      "dialog_node": "node_4_1594296641050",
+      "previous_sibling": "node_1_1594296540853"
+    },
+    {
+      "type": "slot",
+      "parent": "node_9_1594296073082",
+      "variable": "$noC",
+      "dialog_node": "slot_9_1594296098847",
+      "previous_sibling": "node_4_1594296641050"
+    },
+    {
+      "type": "frame",
+      "title": "Yes C++",
+      "parent": "node_9_1594296073082",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#Yes",
+      "dialog_node": "node_1_1594296540853"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_3_1594538541728",
+      "event_name": "focus",
+      "dialog_node": "handler_1_1594538541777",
+      "previous_sibling": "handler_3_1594538541777"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_3_1594538541728",
+      "event_name": "input",
+      "dialog_node": "handler_3_1594538541777"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_5_1594546472986",
+      "event_name": "focus",
+      "dialog_node": "handler_8_1594546473030",
+      "previous_sibling": "handler_9_1594546473030"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_5_1594546472986",
+      "context": {
+        "tellme": "@text.literal"
+      },
+      "conditions": "@text.literal",
+      "event_name": "input",
+      "dialog_node": "handler_9_1594546473030"
+    },
+    {
+      "type": "frame",
+      "title": "Rating Python",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Crazy! $name, you are $RatingPython in Python!!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_9_1594296876297",
+      "context": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_9_1594296985171"
+      },
+      "conditions": "@Rating",
+      "dialog_node": "node_1_1594296968675",
+      "previous_sibling": "response_5_1594298486872"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "title": "$name, how do you rate yourself in Python?",
+            "options": [
+              {
+                "label": "Beginner",
+                "value": {
+                  "input": {
+                    "text": "Beginner"
+                  }
+                }
+              },
+              {
+                "label": "Intermediate",
+                "value": {
+                  "input": {
+                    "text": "Intermediate"
+                  }
+                }
+              },
+              {
+                "label": "Expert",
+                "value": {
+                  "input": {
+                    "text": "Expert"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_9_1594296876297",
+      "conditions": "$yesPython",
+      "dialog_node": "response_5_1594298486872",
+      "previous_sibling": "slot_5_1594298487691"
+    },
+    {
+      "type": "slot",
+      "parent": "node_9_1594296876297",
+      "variable": "$yesPython",
+      "dialog_node": "slot_5_1594298487691"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Mail ID please?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_7_1594546072315",
+      "event_name": "focus",
+      "dialog_node": "handler_7_1594546072373",
+      "previous_sibling": "handler_4_1594546072373"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_7_1594546072315",
+      "context": {
+        "MailId": "@MailId.literal"
+      },
+      "conditions": "@MailId.literal",
+      "event_name": "input",
+      "dialog_node": "handler_4_1594546072373"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_7_1593432045500",
+      "event_name": "focus",
+      "dialog_node": "handler_6_1593432045540",
+      "previous_sibling": "handler_9_1593432045540"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_7_1593432045500",
+      "context": {
+        "name": "@name"
+      },
+      "conditions": "@name",
+      "event_name": "input",
+      "dialog_node": "handler_9_1593432045540"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_5_1594298250287",
+      "event_name": "focus",
+      "dialog_node": "handler_10_1594298250340",
+      "previous_sibling": "handler_3_1594298250340"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_5_1594298250287",
+      "context": {
+        "noJava": "#No"
+      },
+      "conditions": "#No",
+      "event_name": "input",
+      "dialog_node": "handler_3_1594298250340"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_9_1594540755439",
+      "event_name": "focus",
+      "dialog_node": "handler_11_1594540755439",
+      "previous_sibling": "handler_10_1594540755439"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_9_1594540755439",
+      "event_name": "input",
+      "dialog_node": "handler_10_1594540755439"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "title": "$name, how do you rate yourself in C?",
+            "options": [
+              {
+                "label": "Beginner",
+                "value": {
+                  "input": {
+                    "text": "Beginner"
+                  }
+                }
+              },
+              {
+                "label": "Intermediate",
+                "value": {
+                  "input": {
+                    "text": "Intermediate"
+                  }
+                }
+              },
+              {
+                "label": "Expert",
+                "value": {
+                  "input": {
+                    "text": "Expert"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_2_1594295708099",
+      "conditions": "$yesC",
+      "dialog_node": "response_4_1594295895118",
+      "previous_sibling": "slot_8_1594295896112"
+    },
+    {
+      "type": "slot",
+      "parent": "node_2_1594295708099",
+      "variable": "$yesC",
+      "dialog_node": "slot_8_1594295896112",
+      "previous_sibling": "node_7_1594296126283"
+    },
+    {
+      "type": "frame",
+      "title": "Rating C",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Cool! $name, you are $RatingC in C!!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_2_1594295708099",
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_9_1594296073082"
+      },
+      "conditions": "@Rating",
+      "dialog_node": "node_7_1594296126283"
+    },
+    {
+      "type": "standard",
+      "title": "Generating ID",
+      "parent": "node_9_1594296985171",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "$overallScore>=15 || $overallScore>10 && $yesPython || $overallScore>=8 && $noPython",
+      "dialog_node": "node_9_1594322755879",
+      "previous_sibling": "node_8_1594299204762"
+    },
+    {
+      "type": "standard",
+      "title": "ScoreC++",
+      "output": {},
+      "parent": "node_9_1594296985171",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_1_1594540749368"
+      },
+      "conditions": "true",
+      "dialog_node": "node_1_1594540573441",
+      "previous_sibling": "node_5_1594538492560"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Okay $name! Interview finished!!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_9_1594296985171",
+      "conditions": "$noPython",
+      "dialog_node": "response_1_1594298781817",
+      "previous_sibling": "slot_6_1594298782602"
+    },
+    {
+      "type": "slot",
+      "parent": "node_9_1594296985171",
+      "variable": "$noPython",
+      "dialog_node": "slot_6_1594298782602",
+      "previous_sibling": "node_9_1594322755879"
+    },
+    {
+      "type": "standard",
+      "title": "ScoreJava",
+      "output": {},
+      "parent": "node_9_1594296985171",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_8_1594540755399"
+      },
+      "conditions": "true",
+      "dialog_node": "node_1_1594540749368",
+      "previous_sibling": "node_1_1594540573441"
+    },
+    {
+      "type": "standard",
+      "title": "Overall Score",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_9_1594296985171",
+      "context": {
+        "overallScore": "<? ($ScoreC*1) + ($ScoreCpp*1) + ($ScoreJava*2) + ($ScorePython*3)?>",
+        "overallPercent": "<?(($overallScore*100)/21)?>"
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_8_1594299204762"
+      },
+      "conditions": "true",
+      "dialog_node": "node_4_1594541208537",
+      "previous_sibling": "node_8_1594540755399"
+    },
+    {
+      "type": "standard",
+      "title": "Eligibility",
+      "parent": "node_9_1594296985171",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_9_1594322755879"
+      },
+      "conditions": "true",
+      "dialog_node": "node_8_1594299204762",
+      "previous_sibling": "node_4_1594541208537"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Okay $name (Python Rating Recorded)! Interview finished!!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_9_1594296985171",
+      "conditions": "$RatingPython",
+      "dialog_node": "response_8_1594298884088",
+      "previous_sibling": "response_1_1594298781817"
+    },
+    {
+      "type": "standard",
+      "title": "ScorePython",
+      "output": {},
+      "parent": "node_9_1594296985171",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_4_1594541208537"
+      },
+      "conditions": "true",
+      "dialog_node": "node_8_1594540755399",
+      "previous_sibling": "node_1_1594540749368"
+    },
+    {
+      "type": "standard",
+      "title": "ScoreC",
+      "parent": "node_9_1594296985171",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_1_1594540573441"
+      },
+      "conditions": "true",
+      "dialog_node": "node_5_1594538492560"
+    },
+    {
+      "type": "slot",
+      "parent": "node_8_1593333849754",
+      "variable": "$name",
+      "dialog_node": "slot_7_1593432045500",
+      "previous_sibling": "node_10_1593603935660"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_8_1593333849754",
+      "disabled": true,
+      "dialog_node": "response_3_1593432037572",
+      "previous_sibling": "slot_7_1593432045500"
+    },
+    {
+      "type": "frame",
+      "title": "Number",
+      "parent": "node_8_1593333849754",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#name || @name",
+      "dialog_node": "node_10_1593603935660"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_10_1594297407831",
+      "event_name": "focus",
+      "dialog_node": "handler_1_1594297407889",
+      "previous_sibling": "handler_8_1594297407889"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_10_1594297407831",
+      "context": {
+        "RatingCpp": "@Rating.literal"
+      },
+      "conditions": "@Rating.literal",
+      "event_name": "input",
+      "dialog_node": "handler_8_1594297407889"
+    },
+    {
+      "type": "slot",
+      "parent": "node_7_1594546457584",
+      "variable": "$tellme",
+      "dialog_node": "slot_5_1594546472986",
+      "previous_sibling": "node_6_1594565910802"
+    },
+    {
+      "type": "frame",
+      "title": "Strength",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Ok $name! What are your weaknesses?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_7_1594546457584",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_8_1594566100571"
+      },
+      "conditions": "true",
+      "dialog_node": "node_6_1594565910802"
+    },
+    {
+      "type": "frame",
+      "title": "Yes Java",
+      "parent": "node_4_1594296641050",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#Yes",
+      "dialog_node": "node_10_1594296662321",
+      "previous_sibling": "response_9_1594297750763"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "title": "Okay $name (C++ Rating Recorded)! Do you know Java?",
+            "options": [
+              {
+                "label": "Yes",
+                "value": {
+                  "input": {
+                    "text": "yes"
+                  }
+                }
+              },
+              {
+                "label": "No",
+                "value": {
+                  "input": {
+                    "text": "no"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_4_1594296641050",
+      "conditions": "$RatingCpp",
+      "dialog_node": "response_9_1594297750763",
+      "previous_sibling": "response_2_1594297514558"
+    },
+    {
+      "type": "frame",
+      "title": "Python",
+      "parent": "node_4_1594296641050",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#No || $RatingJava",
+      "dialog_node": "node_2_1594296773167",
+      "previous_sibling": "node_10_1594296662321"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "title": "That's Okay $name! Do you know Java?",
+            "options": [
+              {
+                "label": "Yes",
+                "value": {
+                  "input": {
+                    "text": "yes"
+                  }
+                }
+              },
+              {
+                "label": "No",
+                "value": {
+                  "input": {
+                    "text": "no"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_4_1594296641050",
+      "conditions": "$noCpp",
+      "dialog_node": "response_2_1594297514558",
+      "previous_sibling": "slot_2_1594297515917"
+    },
+    {
+      "type": "slot",
+      "parent": "node_4_1594296641050",
+      "variable": "$noCpp",
+      "dialog_node": "slot_2_1594297515917"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_8_1594298642829",
+      "event_name": "focus",
+      "dialog_node": "handler_4_1594298642882",
+      "previous_sibling": "handler_2_1594298642882"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_8_1594298642829",
+      "context": {
+        "RatingPython": "@Rating.literal"
+      },
+      "conditions": "@Rating.literal",
+      "event_name": "input",
+      "dialog_node": "handler_2_1594298642882"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_2_1594540573477",
+      "event_name": "focus",
+      "dialog_node": "handler_4_1594540573477",
+      "previous_sibling": "handler_3_1594540573477"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_2_1594540573477",
+      "event_name": "input",
+      "dialog_node": "handler_3_1594540573477"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Number Please??"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_3_1593604127232",
+      "event_name": "focus",
+      "dialog_node": "handler_2_1593604127274",
+      "previous_sibling": "handler_9_1593604127274"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_3_1593604127232",
+      "context": {
+        "ContactNumber": "@ContactNumber.literal"
+      },
+      "conditions": "@ContactNumber.literal",
+      "event_name": "input",
+      "dialog_node": "handler_9_1593604127274"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_3_1594296145496",
+      "event_name": "focus",
+      "dialog_node": "handler_8_1594296145545",
+      "previous_sibling": "handler_9_1594296145545"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_3_1594296145496",
+      "context": {
+        "RatingC": "@Rating.literal"
+      },
+      "conditions": "@Rating.literal",
+      "event_name": "input",
+      "dialog_node": "handler_9_1594296145545"
+    },
+    {
+      "type": "slot",
+      "parent": "node_7_1594296126283",
+      "variable": "$RatingC",
+      "dialog_node": "slot_3_1594296145496",
+      "previous_sibling": "response_7_1594540992621"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Cool! $name, you are $RatingC in C!!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_7_1594296126283",
+      "disabled": true,
+      "conditions": "$RatingC",
+      "dialog_node": "response_7_1594540992621"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_1_1594540749368",
+      "context": {
+        "ScoreJava": 3
+      },
+      "conditions": "$RatingJava:Expert",
+      "dialog_node": "response_7_1594540749413",
+      "previous_sibling": "response_6_1594540749413"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_1_1594540749368",
+      "context": {
+        "ScoreJava": 2
+      },
+      "conditions": "$RatingJava:Intermediate",
+      "dialog_node": "response_6_1594540749413",
+      "previous_sibling": "response_5_1594540749413"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_1_1594540749368",
+      "context": {
+        "ScoreJava": 1
+      },
+      "conditions": "$RatingJava:Beginner",
+      "dialog_node": "response_5_1594540749413",
+      "previous_sibling": "slot_2_1594540749413"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_1_1594540749368",
+      "dialog_node": "slot_2_1594540749413"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_3_1593333625348",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "No",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "It's okay. Thank you!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#No",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_3_1593333625348",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "title": "Hello Candidate! I am a virtual Recruiter, now you will be having an interview and will be shortlisted if you qualify in this interview. Are you ready to start?",
+            "options": [
+              {
+                "label": "Yes",
+                "value": {
+                  "input": {
+                    "text": "yes"
+                  }
+                }
+              },
+              {
+                "label": "No",
+                "value": {
+                  "input": {
+                    "text": "no"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "context": {
+        "ScoreC": 0,
+        "ScoreCpp": 0,
+        "ScoreJava": 0,
+        "ScorePython": 0
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": false
+  },
+  "learning_opt_out": false,
+  "name": "AI Recruiter",
+  "language": "en",
+  "description": ""
+}
